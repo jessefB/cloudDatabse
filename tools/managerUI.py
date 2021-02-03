@@ -9,6 +9,8 @@ userCommands = {
 }
 
 def handleInput(command, db):
+   # Dear future me. This is working. Returns all the products in the db. 4:15 2/3/21
    if command == 'V':
-      products = db.collections("products").get()
-      print(products.to_dict())
+      products = db.collection("products").get()
+      for pro in products:
+         print(pro.to_dict())
