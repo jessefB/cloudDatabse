@@ -11,14 +11,6 @@ def viewProducts(db):
    for product in products:
       print(product.to_dict())
 
-# Called with 'A'
-def addToCart(db):
-   print("In addToCart func.... pretty cool huh?")
-
-# Called with 'C'
-def viewCart(db):
-   pass
-
 # Called with 'P'
 def addProduct(db):
    # Get necessary product information
@@ -38,7 +30,5 @@ def addProduct(db):
 # Command : [Message, callback funtion]
 userCommands = {
    'V' : ["View all products", viewProducts],
-   'P' : ["Add a product", addProduct],
-   'A' : ["Add a product to cart", addToCart],
-   'C' : ["View your cart", viewCart]
+   'P' : ["Add a product", addProduct]
 }

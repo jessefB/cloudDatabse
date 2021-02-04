@@ -42,3 +42,4 @@ while (True):
    # Call the appropriate function
    # Note: functions are stored as part of the userCommands dictionary
    userUI.userCommands[command][1](db)   # 1 is hard coded in because the function object is in slot 2 (starts at 0, remember?)
+

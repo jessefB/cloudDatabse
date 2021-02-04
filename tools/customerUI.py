@@ -8,8 +8,16 @@ def viewProducts(db):
    products = db.collection("products").get()
 
    # Display the products
+   print("Name\t\t| Price\t| Quantity")
+   print("----------------+-------+---------")
    for product in products:
-      print(product.to_dict())
+      product = product.to_dict()
+      if len(product["name"]) < 7:
+         print(product["name"] + "\t\t| ", end='')
+      else:
+         print(product["name"] + "\t| ", end='')
+      print(str(product["price"]) + "\t| ", end='')
+      print(str(product["quantity"]))
 
 # Called with 'A'
 def addToCart(db):
