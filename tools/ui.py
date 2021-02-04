@@ -8,9 +8,14 @@ def isCustomer():
 def printInstructions(userCommands):
    print("Commands:")
 
-   # Print all avaliable commands (see 'userCommands' above)
+   # Print help command
+   print(" ? : Display these instructions")
+   # Print all avaliable commands from userCommands
    for command in userCommands:
-      print(" " + command + " : " + userCommands[command])
+      print(" " + str(command) + " : " + str(userCommands[command][0])) # 0 is the slot in which the message is stored
+
+   # Print quit command
+   print(" Q : Quit")
 
 def getInput(userCommands):
    # Get user input
@@ -23,6 +28,10 @@ def getInput(userCommands):
    for command in userCommands:
       if temp == command:
          contains = True
+   
+   # Defaults for interacting
+   if temp == 'Q' or temp == '?':
+      contains = True
    
    if not contains:
       return '0'

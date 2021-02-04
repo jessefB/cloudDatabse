@@ -6,8 +6,12 @@ import firebase_admin
 from firebase_admin import credentials, firestore
 
 # Credentials
-cred = credentials.Certificate("creds.json")
-firebase_admin.initialize_app(cred)
+try:
+   cred = credentials.Certificate("creds.json")
+   firebase_admin.initialize_app(cred)
+except:
+   print("No credentials found. See main.py line 3.")
+   quit()
 
 db = firestore.client()
 
@@ -23,15 +27,18 @@ else:
 # Loop ---------------------------------------------------------------
 ui.printInstructions(userUI.userCommands)
 while (True):
-   # Get the command
+
+   # Get the command. Note that this has error checking built in. Any command returned is acceptable and uppercase
    command = ui.getInput(userUI.userCommands)
 
-   # Program defaults
+   # Loop defaults
    if command == '?':
       ui.printInstructions(userUI.userCommands)
+      continue
    
    if command == 'Q':
       break
 
-   # Pass off user input to the specific user type
-   userUI.handleInput(command, db)
+   # Call the appropriate function
+   # Note: functions are stored as part of the userCommands dictionary
+   userUI.userCommands[command][1](db)   # 1 is hard coded in because the function object is in slot 2 (starts at 0, remember?)

@@ -1,2 +1,4 @@
 .vscode
 creds.json
+__pycache__
+*.pyc
