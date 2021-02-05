@@ -26,13 +26,6 @@ def addToCart(db):
    name = input("What is your name? ")
    query = db.collection("orders").where("customer", "==", name).get()
 
-   if len(query) > 1:
-      cart = pluralCart(query)
-   elif len(query) == 1:
-      cart = query[0].id
-   else:
-      cart = newCart(db, name)
-
    # Get the product
    product = input("What product do you want to add? ")
    quantity = input("How many %ss do you want? " % product.lower())
@@ -40,6 +33,14 @@ def addToCart(db):
 
    # Get the product ID
    productID = db.collection("products").where("name", "==", product.capitalize()).get()[0].id
+
+   if len(query) > 1:
+      cart = pluralCart(query)
+   elif len(query) == 1:
+      cart = query[0].id
+   else:
+      cart = newCart(db, name, productID, quantity)
+      return
 
    # Add the item to the cart
    db.collection("orders").document(cart).update({"products" : firestore.ArrayUnion([productID])})
@@ -49,11 +50,11 @@ def addToCart(db):
 
 
 # Create a new cart
-def newCart(db, name):
+def newCart(db, name, productID, quantity):
    temp = {
       "customer" : name,
-      "products" : [""],
-      "count" : [""]
+      "products" : [productID],
+      "count" : [quantity]
    }
 
    # Create a new document
