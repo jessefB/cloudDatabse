@@ -6,7 +6,7 @@ To use this program, simply run `main.py`. A command line interface guides the u
 
 I wanted to learn to use cloud databases to store data not only after the termination of a program, but across systems.
 
-[Software Demo Video](http://youtube.link.goes.here)
+[Software Demo Video](https://youtu.be/W7GjZ8AZpm0)
 
 # Cloud Database
 
