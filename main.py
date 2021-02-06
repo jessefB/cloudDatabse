@@ -10,7 +10,7 @@ try:
    cred = credentials.Certificate("creds.json")
    firebase_admin.initialize_app(cred)
 except:
-   print("No credentials found. See main.py line 3.")
+   print("No credentials found. See 'main.py' line 3.")
    quit()
 
 db = firestore.client()
